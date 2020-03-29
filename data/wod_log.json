@@ -1,0 +1,14 @@
+[
+    {
+        "name": "squat",
+        "date": "2019-03-27",
+        "sets": 3,
+        "weight": 135
+    },
+    {
+        "name": "bench press",
+        "date": "2019-03-26",
+        "sets": 3,
+        "weight": 135
+    }
+]
