@@ -1,36 +1,54 @@
+import boto3
+import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output
-
 import plotly.express as px
 
 from app import app
+from dash.dependencies import Input, Output
+from src.aws import refresh_aws_table
+from src.helpers import create_dropdown
 
+##############################################
+# Data
+##############################################
+dynamodb = boto3.resource('dynamodb', region_name='ca-central-1')
+wod_log = dynamodb.Table('wod_log')
+wod_log_df = refresh_aws_table(wod_log, n=10)[0]
+
+
+##############################################
+# Layouts
+##############################################
+
+
+##############################################
+# Final layout
+##############################################
 layout = html.Div([
-    html.H3('Layout 2'),
-    dcc.Dropdown(
-        id='app-1-dropdown',
-        options=[
-            {'label': 'App 1 - {}'.format(i), 'value': i} for i in [
-                'NYC', 'MTL', 'LA'
-            ]
-        ]
-    ),
-    html.Div(id='app-1-display-value'),
-    dcc.Link('Go to App 2', href='/apps/app2')
+    dbc.Col(html.Div([
+        html.Br(),
+        dbc.Label("Progress"),
+        dcc.Graph(id="fig-line-over-time"),
+        dbc.Select(id='selected-movement-name', 
+                   options=create_dropdown(wod_log_df, 'name')),
+        html.Hr(),
+        html.P("")
+    ]))
 ])
 
+##############################################
+# Callbacks
+##############################################
 
 @app.callback(
-    Output('app-1-display-value', 'children'),
-    [Input('app-1-dropdown', 'value')])
-def display_value(value):
-    return 'You have selected "{}"'.format(value)
-
-@app.callback(
-    Output(),
-    []
+    Output('fig-line-over-time', 'figure'),
+    [Input('selected-movement-name', 'value')]
 )
-def plot_over_time(df):
-    fig = px.line(df, x="date", y="weight", 
+def plot_over_time(selected_name):
+    df = refresh_aws_table(wod_log, n=10)[0]
+    df = df[df['name']==selected_name]
+    print(df)
+    fig = px.line(df, x="date", y="weight", color='name',
                   title='Progress over time')
+    return fig
