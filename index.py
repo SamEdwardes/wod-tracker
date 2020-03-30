@@ -1,27 +1,44 @@
 import os
 
+import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 
 from app import app
+from apps import home, journal, progress
 from dash.dependencies import Input, Output
-from apps import layout_01, layout_02
+
+##############################################
+# App Layout
+##############################################
+
+nav_bar = dbc.NavbarSimple(
+    [
+        dbc.NavItem(dbc.NavLink("Journal", href="/apps/journal")),
+        dbc.NavItem(dbc.NavLink("Progress", href="/apps/progress"))
+    ],
+    brand="Wod Log",
+    brand_href="/apps/home",
+    color="primary",
+    dark=True
+)
+#
 
 app.layout = html.Div([
+    nav_bar,
     dcc.Location(id='url', refresh=False),
     html.Div(id='page-content')
 ])
 
-
 @app.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
 def display_page(pathname):
-    if pathname == '/apps/layout_01':
-        return layout_01.layout
-    elif pathname == '/apps/layout_02':
-        return layout_02.layout
+    if pathname == '/apps/journal':
+        return journal.layout
+    elif pathname == '/apps/progress':
+        return progress.layout
     else:
-        return '404'
+        return home.layout
 
 ##############################################
 # Run

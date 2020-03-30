@@ -24,7 +24,7 @@ def refresh_aws_table(aws_table, n=5):
     """    
     df = pd.DataFrame(data=aws_table.scan()['Items'])
     df = df.sort_values(by='date', ascending=False)
-    df_ordered = df[['user', 'date', 'name', 'sets', 'reps', 'weight']]
+    df_ordered = df[['user', 'date', 'name', 'sets', 'reps', 'weight', 'note']]
     dbc_df = dbc.Table.from_dataframe(df_ordered.head(n), 
                                       id="wod-log-df", size="sm", striped=True,
                                       hover=True),

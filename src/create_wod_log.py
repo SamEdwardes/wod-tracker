@@ -17,7 +17,7 @@ print_break("Checking if table exists:")
 try:
     table = dynamodb.Table('wod_log')
     table.delete()
-    print("Deleting table.")
+    print("Deleting table....")
     table.wait_until_not_exists()
     print("Table deleted.")
     
@@ -75,6 +75,7 @@ with open("data/wod_log.json") as json_file:
         reps = int(movement['reps'])
         weight = movement['weight']
         user = movement['user']
+        note = movement['note']
 
         print("Adding movement:", name, date)
 
@@ -85,7 +86,8 @@ with open("data/wod_log.json") as json_file:
                'sets': sets,
                'reps': reps,
                'weight': weight,
-               'user': user
+               'user': user,
+               'note': note
             }
         )
 

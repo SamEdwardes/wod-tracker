@@ -5,7 +5,8 @@
         "sets": 3,
         "reps": 10,
         "weight": 135,
-        "user": "sam edwardes"
+        "user": "sam edwardes",
+        "note": "felt heavy, but OK."
     },
     {
         "name": "bench press",
@@ -13,7 +14,8 @@
         "sets": 3,
         "reps": 10,
         "weight": 135,
-        "user": "sam edwardes"
+        "user": "sam edwardes",
+        "note": "felt heavy, but OK."
     },
     {
         "name": "bench press",
@@ -21,7 +23,8 @@
         "sets": 3,
         "reps": 10,
         "weight": 140,
-        "user": "sam edwardes"
+        "user": "sam edwardes",
+        "note": "felt heavy, but OK."
     },
     {
         "name": "bench press",
@@ -29,7 +32,8 @@
         "sets": 3,
         "reps": 10,
         "weight": 135,
-        "user": "sam edwardes"
+        "user": "sam edwardes",
+        "note": "felt heavy, but OK."
     },
     {
         "name": "bench press",
@@ -37,7 +41,8 @@
         "sets": 3,
         "reps": 10,
         "weight": 135,
-        "user": "sam edwardes"
+        "user": "sam edwardes",
+        "note": "felt heavy, but OK."
     },
     {
         "name": "bench press",
@@ -45,7 +50,8 @@
         "sets": 3,
         "reps": 10,
         "weight": 150,
-        "user": "sam edwardes"
+        "user": "sam edwardes",
+        "note": "felt heavy, but OK."
     },
     {
         "name": "bench press",
@@ -53,6 +59,7 @@
         "sets": 3,
         "reps": 10,
         "weight": 135,
-        "user": "jake"
+        "user": "jake",
+        "note": "felt heavy, but OK."
     }
 ]
