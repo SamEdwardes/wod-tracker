@@ -4,21 +4,27 @@ import time
 
 import boto3
 
+from helpers import print_break
+
 dynamodb = boto3.resource('dynamodb', region_name='ca-central-1')
 
 ##############################################
 # Step 1: create table
 ##############################################
 
+print_break("Checking if table exists:")
+
 try:
     table = dynamodb.Table('wod_log')
     table.delete()
+    print("Deleting table.")
     table.wait_until_not_exists()
     print("Table deleted.")
     
 except:
     print("Table not yet created. Creating table...")
 
+print_break("Creating a new table")
 
 table = dynamodb.create_table(
     TableName='wod_log',
@@ -50,13 +56,15 @@ table = dynamodb.create_table(
 )
 
 print("Table status:", table.table_status)
+table = dynamodb.Table('wod_log')
+table.wait_until_exists()
+print("Table status:", table.table_status)
 
 ##############################################
 # Step 2: create table
 ##############################################
 
-table = dynamodb.Table('wod_log')
-table.wait_until_exists()
+print_break("Adding data to table")
 
 with open("data/wod_log.json") as json_file:
     wod_log = json.load(json_file, parse_float = decimal.Decimal)
@@ -64,7 +72,9 @@ with open("data/wod_log.json") as json_file:
         name = movement['name']
         date = movement['date']
         sets = int(movement['sets'])
+        reps = int(movement['reps'])
         weight = movement['weight']
+        user = movement['user']
 
         print("Adding movement:", name, date)
 
@@ -73,6 +83,10 @@ with open("data/wod_log.json") as json_file:
                'name': name,
                'date': date,
                'sets': sets,
-               'weight': weight
+               'reps': reps,
+               'weight': weight,
+               'user': user
             }
         )
+
+print("Complete!")

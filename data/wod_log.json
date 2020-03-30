@@ -1,14 +1,18 @@
 [
     {
         "name": "squat",
-        "date": "2019-03-27",
+        "date": "2000-01-01",
         "sets": 3,
-        "weight": 135
+        "reps": 10,
+        "weight": 135,
+        "user": "sam edwardes"
     },
     {
         "name": "bench press",
-        "date": "2019-03-26",
+        "date": "2000-01-01",
         "sets": 3,
-        "weight": 135
+        "reps": 10,
+        "weight": 135,
+        "user": "sam edwardes"
     }
 ]
