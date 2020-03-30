@@ -167,14 +167,9 @@ app.layout = html.Div([
                   workouts'''),
         dbc.Label("History"),
         html.Div(id="wod-log-df"),
+        html.Hr(),
         html.P("Log a new workout"),
         layout_02_workout_entry,
-        # dbc.Input(id='new-date', placeholder="YYYY-MM-DD", type='text'),
-        # dbc.Input(id='new-name', placeholder="Name of Movement", type='text'),
-        # dbc.Input(id='new-sets', placeholder="Number of Sets", type='number'),
-        # dbc.Input(id='new-reps', placeholder="Number of Reps", type='number'),
-        # dbc.Input(id='new-weight', placeholder="Weight in Pounds", type='number'),
-        # dbc.Input(id='new-user', placeholder="Name of user", type='number'),
         html.P("End of app...")
     ]))
 ])
